@@ -1,0 +1,18 @@
+dog	breed	age	sex	first_baited_box	condition	choice
+Quainty	smooth collie	7	f	blue	true belief	baited
+Lara	mix labrador	8	f	grey	true belief	baited
+Aila2	white swiss shepherd	2	f	brown	true belief	baited
+Ookami	white swiss shepherd	3	m	blue	false belief	baited
+Gryffindor	border collie	1	m	brown	true belief	baited
+Akela	australian shepherd	2	m	blue	false belief	baited
+Finlay2	golden retriever	5	m	brown	false belief	baited
+Argo	swiss hound	1	m	blue	false belief	baited
+Grey	labrador 	1	f	blue	true belief	baited
+Benny	border collie	5	m	brown	false belief	empty
+Achuck	chesapeake bay retriever	14	f	brown	false belief	baited
+Elrond	chesapeake bay retriever	10	m	blue	false belief	empty
+Bilbo	chesapeake bay retriever	2	m	brown	true belief	empty
+Snoopy4	australian shepherd	6	m	blue	true belief	baited
+Siri	border collie	3	f	blue	true belief	empty
+Luna23	australian shepherd	10 months	f	blue	true belief	baited
+Pascha1	german shepherd	10	m	brown	false belief	empty

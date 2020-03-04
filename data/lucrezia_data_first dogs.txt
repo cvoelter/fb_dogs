@@ -1,0 +1,73 @@
+Scoring	Start	Start_Frame	Stop	Stop_Frame		Subject	Behaviour	Value
+FB_HidingFinding_2020-02-21_LL_Quainty_16-39-18_TrueBelief	95.06666667	5704	96.95	5817	1.88333333	Quainty	Latency	Latency
+FB_HidingFinding_2020-02-24_LL_GPL_Aila2_14-15-38_TrueBelief	81.78333333	4907	82.98333333	4979	1.2	Aila2	Look at empty 2 seconds	empty 2 seconds
+FB_HidingFinding_2020-02-24_LL_GPL_Aila2_14-15-38_TrueBelief	85.21666667	5113	89.56666667	5374	4.35	Aila2	look at empty while suggesting	empty s
+FB_HidingFinding_2020-02-24_LL_GPL_Aila2_14-15-38_TrueBelief	89.66666667	5380	90.23333333	5414	0.56666666	Aila2	look at baited while suggesting	baited s
+FB_HidingFinding_2020-02-24_LL_GPL_Aila2_14-15-38_TrueBelief	94.98333333	5699	96.16666667	5770	1.18333334	Aila2	Latency	Latency
+FB_HidingFinding_2020-02-21_LL_GPL_Lara_14-54-17_TrueBelief	84.23333333	5054	86.23333333	5174	2	Lara	Look at baited 2 seconds	baited 2 seconds
+FB_HidingFinding_2020-02-21_LL_GPL_Lara_14-54-17_TrueBelief	87.06666667	5224	87.48333333	5249	0.41666666	Lara	look at baited while suggesting	baited s
+FB_HidingFinding_2020-02-21_LL_GPL_Lara_14-54-17_TrueBelief	89.06666667	5344	93.15	5589	4.08333333	Lara	look at empty while suggesting	empty s
+FB_HidingFinding_2020-02-21_LL_GPL_Lara_14-54-17_TrueBelief	93.4	5604	94.95	5697	1.55	Lara	look at baited while suggesting	baited s
+FB_HidingFinding_2020-02-21_LL_GPL_Lara_14-54-17_TrueBelief	99.46666667	5968	101.7166667	6103	2.25000003	Lara	Latency	Latency
+FBHidingFinding_2020-02-25_LL_GPL_Ookami_14-09-29_FalseBelief	65.7	3942	73.3	4398	7.6	Ookami	look at empty while suggesting	empty s
+FBHidingFinding_2020-02-25_LL_GPL_Ookami_14-09-29_FalseBelief	75.98333333	4559	77.55	4653	1.56666667	Ookami	Latency	Latency
+FBHidingFinding_2020-02-27_LL_GPL_ Gryffindor_10-24-08	87.41666667	5245	92.55	5553	5.13333333	Gryffindor	look at empty while suggesting	empty s
+FBHidingFinding_2020-02-27_LL_GPL_ Gryffindor_10-24-08	93.55	5613	95.11666667	5707	1.56666667	Gryffindor	look at empty while suggesting	empty s
+FBHidingFinding_2020-02-27_LL_GPL_ Gryffindor_10-24-08	99.21666667	5953	114.6333333	6878	15.41666663	Gryffindor	Latency	Latency
+FBHidingFinding_2020-02-27_LL_GPL_ Akela_FalseBelief_11-02-25	61.26666667	3676	68.16666667	4090	6.9	Akela	look at empty while suggesting	empty s
+FBHidingFinding_2020-02-27_LL_GPL_ Akela_FalseBelief_11-02-25	71.66666667	4300	73.93333333	4436	2.26666666	Akela	Latency	Latency
+FB_HidingFinding_2020-02-27_LL_GPL_Finlay2_15-24-13_FalseBelief	61.6	3696	69.7	4182	8.1	Quainty	look at empty while suggesting	empty s
+FB_HidingFinding_2020-02-27_LL_GPL_Finlay2_15-24-13_FalseBelief	61.85	3711	68	4080	6.15	Finlay2	look at empty while suggesting	empty s
+FB_HidingFinding_2020-02-27_LL_GPL_Finlay2_15-24-13_FalseBelief	71.38333333	4283	75.81666667	4549	4.43333334	Quainty	Latency	Latency
+FB_HidingFinding_2020-02-27_LL_GPL_Finlay2_15-24-13_FalseBelief	71.51666667	4291	75.95	4557	4.43333333	Finlay2	Latency	Latency
+FBHidingFinding_2020-02-27_LL_GPL_Argo_15-57-14_FalseBelief	60.16666667	3610	62.53333333	3752	2.36666666	Argo	look at empty while suggesting	empty s
+FBHidingFinding_2020-02-27_LL_GPL_Argo_15-57-14_FalseBelief	62.78333333	3767	63.21666667	3793	0.43333334	Argo	look at baited while suggesting	baited s
+FBHidingFinding_2020-02-27_LL_GPL_Argo_15-57-14_FalseBelief	63.4	3804	64.93333333	3896	1.53333333	Argo	look at empty while suggesting	empty s
+FBHidingFinding_2020-02-27_LL_GPL_Argo_15-57-14_FalseBelief	65.78333333	3947	66.88333333	4013	1.1	Argo	look at empty while suggesting	empty s
+FBHidingFinding_2020-02-27_LL_GPL_Argo_15-57-14_FalseBelief	70	4200	130.3333333	7820	60.3333333	Argo	Latency	Latency
+FBHidingFinding_2020-02-28_LL_LB_Grey_10-38-45_TrueBelief	80.51666667	4831	88.01666667	5281	7.5	Grey	look at empty while suggesting	empty s
+FBHidingFinding_2020-02-28_LL_LB_Grey_10-38-45_TrueBelief	91.88333333	5513	95.06666667	5704	3.18333334	Grey	Latency	Latency
+FBHidingFinding_2020-02-28_LL_LB_Benny_14-28-18_FalseBelief	61.93333333	3716	68.41666667	4105	6.48333334	Benny	look at empty while suggesting	empty s
+FBHidingFinding_2020-02-28_LL_LB_Benny_14-28-18_FalseBelief	70.1	4206	70.43333333	4226	0.33333333	Benny	look at baited while suggesting	baited s
+FBHidingFinding_2020-02-28_LL_LB_Benny_14-28-18_FalseBelief	71.8	4308	73.6	4416	1.8	Benny	Latency	Latency
+FB_HidingFinding_2020-02-21_LL_Quainty_16-39-18_TrueBelief	79.81666667	4789	80.03333333	4802	0.21666666	Quainty	Look at baited 2 seconds	baited 2 seconds
+FB_HidingFinding_2020-02-21_LL_Quainty_16-39-18_TrueBelief	84.36666667	5062	87.73333333	5264	3.36666666	Quainty	look at empty while suggesting	empty s
+FB_HidingFinding_2020-02-21_LL_Quainty_16-39-18_TrueBelief	88.11666667	5287	89.96666667	5398	1.85	Quainty	look at baited while suggesting	baited s
+FB_HidingFinding_2020-02-21_LL_Quainty_16-39-18_TrueBelief	90.43333333	5426	91.81666667	5509	1.38333334	Quainty	look at empty while suggesting	empty s
+FB_HidingFinding_2020-02-21_LL_Quainty_16-39-18_TrueBelief	93.96666667	5638	94.31666667	5659	0.35	Quainty	Look at empty 2 seconds	empty 2 seconds
+FB_HidingFinding_2020-02-21_LL_Quainty_16-39-18_TrueBelief	95.01666667	5701	96.91666667	5815	1.9	Quainty	Latency	Latency
+FBHidingFinding_2020-03-02_LL_GPL_Achuk_16-17-05_FalseBelief	60.13333333	3608	60.7	3642	0.56666667	Achuck	Look at baited 2 seconds	baited 2 seconds
+FBHidingFinding_2020-03-02_LL_GPL_Achuk_16-17-05_FalseBelief	62.41666667	3745	70	4200	7.58333333	Achuck	look at empty while suggesting	empty s
+FBHidingFinding_2020-03-02_LL_GPL_Achuk_16-17-05_FalseBelief	73.58333333	4415	74.86666667	4492	1.28333334	Achuck	Latency	Latency
+FBHidingFinding_2020-03-02_LL_GPL_Elrond_16-30-01_FalseBelief	60.26666667	3616	61.91666667	3715	1.65	Elrond	Look at baited 2 seconds	baited 2 seconds
+FBHidingFinding_2020-03-02_LL_GPL_Elrond_16-30-01_FalseBelief	62.21666667	3733	63.18333333	3791	0.96666666	Elrond	look at baited while suggesting	baited s
+FBHidingFinding_2020-03-02_LL_GPL_Elrond_16-30-01_FalseBelief	64.18333333	3851	66.18333333	3971	2	Elrond	look at empty while suggesting	empty s
+FBHidingFinding_2020-03-02_LL_GPL_Elrond_16-30-01_FalseBelief	66.46666667	3988	66.93333333	4016	0.46666666	Elrond	look at empty while suggesting	empty s
+FBHidingFinding_2020-03-02_LL_GPL_Elrond_16-30-01_FalseBelief	67.06666667	4024	69.58333333	4175	2.51666666	Elrond	look at baited while suggesting	baited s
+FBHidingFinding_2020-03-02_LL_GPL_Elrond_16-30-01_FalseBelief	70.08333333	4205	71.86666667	4312	1.78333334	Elrond	look at empty while suggesting	empty s
+FBHidingFinding_2020-03-02_LL_GPL_Elrond_16-30-01_FalseBelief	73.28333333	4397	73.61666667	4417	0.33333334	Elrond	look at empty while suggesting	empty s
+FBHidingFinding_2020-03-02_LL_GPL_Elrond_16-30-01_FalseBelief	74.21666667	4453	75.25	4515	1.03333333	Elrond	Latency	Latency
+FBHidingFinding_2020-03-02_LL_GPL_Bilbo_16-42-57_FalseBelief	80.06666667	4804	80.86666667	4852	0.8	Bilbo	Look at baited 2 seconds	baited 2 seconds
+FBHidingFinding_2020-03-02_LL_GPL_Bilbo_16-42-57_FalseBelief	80.98333333	4859	82.55	4953	1.56666667	Bilbo	look at baited while suggesting	baited s
+FBHidingFinding_2020-03-02_LL_GPL_Bilbo_16-42-57_FalseBelief	84.05	5043	89.78333333	5387	5.73333333	Bilbo	look at empty while suggesting	empty s
+FBHidingFinding_2020-03-02_LL_GPL_Bilbo_16-42-57_FalseBelief	92.8	5568	93.8	5628	1	Bilbo	Latency	Latency
+FBHidingFinding_2020-03-03_LL_GPL_Snoopy4_17-06-14_TrueBelief	85.3	5118	85.58333333	5135	0.28333333	Snoopy4	Look at baited 2 seconds	baited 2 seconds
+FBHidingFinding_2020-03-03_LL_GPL_Snoopy4_17-06-14_TrueBelief	88.85	5331	91.11666667	5467	2.26666667	Snoopy4	look at empty while suggesting	empty s
+FBHidingFinding_2020-03-03_LL_GPL_Snoopy4_17-06-14_TrueBelief	91.65	5499	93.45	5607	1.8	Snoopy4	look at baited while suggesting	baited s
+FBHidingFinding_2020-03-03_LL_GPL_Snoopy4_17-06-14_TrueBelief	94.05	5643	95.7	5742	1.65	Snoopy4	look at empty while suggesting	empty s
+FBHidingFinding_2020-03-03_LL_GPL_Snoopy4_17-06-14_TrueBelief	98.81666667	5929	100.05	6003	1.23333333	Snoopy4	Latency	Latency
+FBHidingFinding_2020-03-03_LL_GPL_Siri_18-18-47_TrueBelief	77.61666667	4657	78.38333333	4703	0.76666666	Siri	Look at baited 2 seconds	baited 2 seconds
+FBHidingFinding_2020-03-03_LL_GPL_Siri_18-18-47_TrueBelief	83.8	5028	88.58333333	5315	4.78333333	Siri	look at empty while suggesting	empty s
+FBHidingFinding_2020-03-03_LL_GPL_Siri_18-18-47_TrueBelief	88.63333333	5318	88.85	5331	0.21666667	Siri	look at baited while suggesting	baited s
+FBHidingFinding_2020-03-03_LL_GPL_Siri_18-18-47_TrueBelief	89.01666667	5341	89.91666667	5395	0.9	Siri	look at empty while suggesting	empty s
+FBHidingFinding_2020-03-03_LL_GPL_Siri_18-18-47_TrueBelief	93.78333333	5627	94.95	5697	1.16666667	Siri	Latency	Latency
+FBHidingFinding_2020-03-04_LL_GPL_Luna_10-09-12_TrueBelief	80.4	4824	80.81666667	4849	0.41666667	Luna23	Look at baited 2 seconds	baited 2 seconds
+FBHidingFinding_2020-03-04_LL_GPL_Luna_10-09-12_TrueBelief	82.36666667	4942	89.65	5379	7.28333333	Luna23	look at empty while suggesting	empty s
+FBHidingFinding_2020-03-04_LL_GPL_Luna_10-09-12_TrueBelief	90.68333333	5441	91.05	5463	0.36666667	Luna23	look at baited while suggesting	baited s
+FBHidingFinding_2020-03-04_LL_GPL_Luna_10-09-12_TrueBelief	92.55	5553	94.86666667	5692	2.31666667	Luna23	Latency	Latency
+FBHidingFinding_2020-03-04_LL_GPL_Pascha1_11-16-44_FalseBelief	62.25	3735	63.31666667	3799	1.06666667	Pascha1	Look at empty 2 seconds	empty 2 seconds
+FBHidingFinding_2020-03-04_LL_GPL_Pascha1_11-16-44_FalseBelief	63.75	3825	65	3900	1.25	Pascha1	Look at empty 2 seconds	empty 2 seconds
+FBHidingFinding_2020-03-04_LL_GPL_Pascha1_11-16-44_FalseBelief	65.16666667	3910	69.33333333	4160	4.16666666	Pascha1	Look at empty 2 seconds	empty 2 seconds
+FBHidingFinding_2020-03-04_LL_GPL_Pascha1_11-16-44_FalseBelief	71.18333333	4271	71.83333333	4310	0.65	Pascha1	look at baited while suggesting	baited s
+FBHidingFinding_2020-03-04_LL_GPL_Pascha1_11-16-44_FalseBelief	72.48333333	4349	72.5	4350	0.01666667	Pascha1	Latency	Latency
+FBHidingFinding_2020-03-04_LL_GPL_Pascha1_11-16-44_FalseBelief	72.5	4350	73.96666667	4438	1.46666667	Pascha1	Latency	Latency

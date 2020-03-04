@@ -1,0 +1,98 @@
+---
+title: "False Belief Task 2020"
+author: ""
+date: "February 27, 2020"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+
+#### test
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+rm(list=ls())
+library(lme4)
+library(tidyverse)
+library(ggthemes)
+library(psych)
+library(summarytools)
+
+#install.packages("")
+
+#load(file ="mm1_mult_poss.RData")
+
+
+
+```
+
+```{r loading data, include = FALSE}
+fb_counterbalancing <- read.table(file="data/lucrezia_counterbalancing.txt", header=T, sep="\t")%>%
+  rename(Subject=dog)
+
+
+fb_data <- read.table(file="data/lucrezia_data_first dogs.txt", header=T, sep="\t")%>%
+  rename(Duration=X)
+
+
+view(dfSummary(fb_counterbalancing))
+
+```
+
+
+```{r include=FALSE}
+
+merged.data<-fb_counterbalancing   %>% 
+  full_join(fb_data)
+  
+  
+view(dfSummary(merged.data))
+
+
+```
+
+
+
+```{r}
+
+table(merged.data$Subject, merged.data$Behaviour)
+table(plot.data$Subject, plot.data$Behaviour)
+
+
+plot.data <- merged.data %>%
+  filter(Behaviour=="Look at baited 2 seconds" | Behaviour=="Look at empty 2 seconds")%>%
+  group_by(Subject, condition, Behaviour) %>% 
+  summarize(Duration_sum = sum(Duration))%>%
+  add_count(Duration_sum)
+
+view(dfSummary(plot.data))
+
+mean.data <- plot.data %>%
+  group_by(condition, Behaviour) %>% 
+  summarize(mean.Time = mean(Duration_sum))
+
+
+p1 <- ggplot(
+  data=plot.data, aes(x=Behaviour, y=Duration, group=Subject)) +   
+  geom_boxplot(aes(group=Behaviour), width=0.9, outlier.colour="white")+
+  #geom_point(size = plot.data$n, colour = "darkgrey", alpha=0.4) +
+  #geom_line(lty=2, alpha=0.4)+
+  #ylim(0,10)+
+  labs(x="Empty vs baited",y="Looking time")+
+  theme_few()+
+  theme(axis.ticks.x=element_blank(), axis.title.x = element_text(size=10), plot.title = element_text(size=12), plot.caption = element_text(size=10))+    
+  ggtitle("First 17 dogs")+
+  facet_wrap(~condition)
+
+p1 
+
+
+```
+
+
+
+
+
