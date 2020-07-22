@@ -1,7 +1,7 @@
 ---
 title: "False Belief Task 2020"
 author: ""
-date: "February 27, 2020"
+date: "July 22, 2020"
 output:
   pdf_document: default
   html_document: default
@@ -33,10 +33,11 @@ library(summarytools)
 fb_counterbalancing <- read.table(file="data/lucrezia_counterbalancing.txt", header=T, sep="\t")%>%
   rename(Subject=dog)
 
-
 fb_data <- read.table(file="data/lucrezia_data_first dogs.txt", header=T, sep="\t")%>%
   rename(Duration=X)
 
+fb_data <- read.csv(file="data/lucrezia_data_first dogs.txt", header=T, sep="\t")%>%
+  rename(Duration=X)
 
 view(dfSummary(fb_counterbalancing))
 
