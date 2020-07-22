@@ -50,6 +50,7 @@ fb_data <- read.csv(file="data/20200721_lucrezia_false_belief_task_data.csv")%>%
   mutate(fci_group = as.factor(fci_group))%>%
   mutate(id= 1:length(dog))%>%
   filter(dog!="Luna22" & dog!="Luna25")%>%
+  filter(id<123)%>%
   droplevels()
 summary(fb_data)
 
@@ -144,7 +145,7 @@ plot_grid(p.ant.fb, p.ant.tb, labels=c("FB", "TB"))
 
 plot.data.ant2 <- fb_data %>%
   mutate(condition=recode(condition, "FalseBelief"="False Belief", "TrueBelief"="True Belief"))%>%#renaming of factor levels
-  mutate(prop_lt_buckets=prop_lt_baited_pause+prop_lt_empty_pause, prop_lt_empty_buckets = prop_lt_empty_pause/(prop_lt_baited_pause+prop_lt_empty_pause)) 
+  mutate(prop_lt_buckets=prop_lt_baited_pause+prop_lt_empty_pause)
 
 
 p.ant.con2_wo_zeros<-ggplot(
@@ -161,16 +162,7 @@ p.ant.con2<-ggplot(
   geom_jitter( colour = "darkgrey", alpha=0.4, width = 0.25) +
   theme_classic()+
   labs(x="Condition",y="")
-
-
-p.ant.con3<-ggplot(
-  data=plot.data.ant2, aes(x=condition, prop_lt_empty_buckets)) +
-  geom_boxplot(alpha=0.5, outlier.colour="white")+
-  geom_jitter( colour = "darkgrey", alpha=0.4, width = 0.25) +
-  theme_classic()+
-  labs(x="Condition",y="")
-
-plot_grid(p.ant.con2_wo_zeros, p.ant.con2,p.ant.con3,nrow=1, labels=c("A", "B", "C"))
+plot_grid(p.ant.con2_wo_zeros, p.ant.con2, labels=c("A", "B"))
 ```
 
 
@@ -181,7 +173,7 @@ plot_grid(p.ant.con2_wo_zeros, p.ant.con2,p.ant.con3,nrow=1, labels=c("A", "B", 
 
 ```{r eval=FALSE, echo=FALSE}
 xx.fe.re=fe.re.tab(fe.model="correct ~ condition + age + sex + first_baited_box",
-                   re="(1|parker_group)+(1|communicator)", data=fb_data)
+                   re="(1|parker_group)", data=fb_data)
 xx.fe.re$summary
 ```
 
@@ -205,7 +197,7 @@ as.data.frame(model.data)
 
 ## code to run the model
 full.choice <- glmer(correct ~ condition + z.age + sex + first_baited_box+
-             (1+condition.c + z.age + sex.c + first_baited_box.c || parker_group) + (1+condition.c + z.age + sex.c + first_baited_box.c || communicator), 
+             (1+condition.c + z.age + sex.c + first_baited_box.c || parker_group), 
              data = model.data, family = binomial, 
              control=glmerControl(optimizer="bobyqa",optCtrl=list(maxfun=2e5))
 )
@@ -251,7 +243,7 @@ drop1(full.choice.glm, test="Chisq")
 
 ```{r eval=FALSE, echo=FALSE}
 xx.fe.re=fe.re.tab(fe.model="correct ~ condition + age + sex + first_baited_box",
-                   re="(1|breed)+(1|communicator)", data=fb_data)
+                   re="(1|breed)", data=fb_data)
 xx.fe.re$summary
 ```
 
@@ -259,7 +251,7 @@ xx.fe.re$summary
 
 ## code to run the model
 full.choice.breed <- glmer(correct ~ condition + z.age + sex + first_baited_box+
-             (1+ sex.c + condition.c + first_baited_box.c || breed)+(1+ z.age+ sex.c + condition.c + first_baited_box.c || communicator), 
+             (1+ sex.c + condition.c + first_baited_box.c || breed), 
              data = model.data, family = binomial, 
              control=glmerControl(optimizer="bobyqa",optCtrl=list(maxfun=2e5))
 )

@@ -1,0 +1,155 @@
+---
+title: "False Belief Task 2020"
+author: ""
+date: "July 22, 2020"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+rm(list=ls())
+
+library(lme4)
+library(ggthemes)
+library(psych)
+library(summarytools)
+library(cowplot)
+library(car)
+library(tidyverse)
+library(glmmTMB)
+#library(sjPlot)
+source("functions/diagnostic_fcns.r")
+source("functions/glmm_stability.r")
+source("functions/boot_glmm.r")
+
+
+#install.packages("")
+
+#load(file ="mm1_mult_poss.RData")
+
+
+
+```
+
+```{r loading data, include = FALSE}
+fb_data <- read.csv(file="data/20200721_lucrezia_false_belief_task_data.csv")%>%
+  mutate(correct=as.numeric(ifelse(choice=="baited",1,ifelse(choice=="empty",0,""))))%>%
+  mutate(fci_group = as.factor(fci_group))%>%
+  mutate(id= 1:length(dog))%>%
+  filter(dog!="Luna22" & dog!="Luna25")%>%
+  droplevels()
+summary(fb_data)
+
+hist(fb_data$latency)
+
+#view(dfSummary(fb_data))
+
+```
+
+### GLMM
+
+
+#GLMM with parker group as random intercept
+
+```{r eval=FALSE, echo=FALSE}
+xx.fe.re=fe.re.tab(fe.model="latency ~ condition + age + sex + first_baited_box",
+                   re="(1|parker_group)+(1|communicator)", data=fb_data)
+xx.fe.re$summary
+```
+
+
+
+``` {r mixed modeling, error=TRUE}
+
+# centering variables for modeling
+
+model.data <- fb_data %>% 
+  mutate(z.age = as.numeric(scale(age, scale = T, center = T)),
+         sex.c = as.numeric(scale(as.numeric(sex), scale=F, center=T)),
+         condition.c = as.numeric(scale(as.numeric(condition), scale=F, center=T)),
+         first_baited_box.c = as.numeric(scale(as.numeric(first_baited_box), scale=F, center=T)))
+
+as.data.frame(model.data)
+#view(dfSummary(model.data))
+```
+
+``` {r mixed modeling, error=TRUE}
+
+## code to run the model
+full.latency <- glmmTMB(latency ~ condition + z.age + sex + first_baited_box+
+             (1+condition.c + z.age + sex.c + first_baited_box.c || parker_group) + (1+condition.c + z.age + sex.c + first_baited_box.c || communicator), 
+             data = model.data, 
+             family=Gamma(link="log"), control=glmmTMBControl(optCtrl=list(iter.max=1000000000, eval.max=1000000000))
+)
+
+```
+
+
+#### check for colinearity in the previous model.
+
+```{R echo=FALSE, error=FALSE, warning=FALSE}
+
+col.full <- lm(latency ~ condition + z.age + sex + first_baited_box, data = model.data)
+vif(col.full)
+#no problem
+```
+
+
+####Model output
+  + Coefficients
+```{r}
+summary(full.latency)
+```
+  + Individual predictors: likelihood ratio tests  
+Drop1: P values for the individual effects were based on likelihood ratio tests comparing the full with respective reduced models (Barr et al., 2013; R function drop1 with argument 'test' set to "Chisq"). 
+
+```{r}
+drop1.full=drop1(full.latency, test="Chisq")
+round(drop1.full,3)
+```
+
+
+### Model with breed as random intercept
+
+
+```{r eval=FALSE, echo=FALSE}
+xx.fe.re=fe.re.tab(fe.model="latency ~ condition + age + sex + first_baited_box",
+                   re="(1|breed)+(1|communicator)", data=fb_data)
+xx.fe.re$summary
+```
+
+``` {r mixed modeling, error=TRUE}
+
+## code to run the model
+full.latency.breed <- glmmTMB(latency ~ condition + z.age + sex + first_baited_box+
+             (1+condition.c +  sex.c + first_baited_box.c || breed) + (1+condition.c + z.age + sex.c + first_baited_box.c || communicator), 
+             data = model.data, 
+             family=Gamma(link="log"), control=glmmTMBControl(optCtrl=list(iter.max=1000000000, eval.max=1000000000))
+)
+```
+
+
+####Model output
+  + Coefficients
+```{r}
+summary(full.latency.breed)
+```
+  + Individual predictors: likelihood ratio tests  
+Drop1: P values for the individual effects were based on likelihood ratio tests comparing the full with respective reduced models (Barr et al., 2013; R function drop1 with argument 'test' set to "Chisq"). 
+
+```{r}
+drop1.full=drop1(full.latency.breed, test="Chisq")
+round(drop1.full,3)
+```
+
+
+
+
+
+
+
