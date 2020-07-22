@@ -50,6 +50,7 @@ fb_data <- read.csv(file="data/20200721_lucrezia_false_belief_task_data.csv")%>%
   mutate(fci_group = as.factor(fci_group))%>%
   mutate(id= 1:length(dog))%>%
   filter(dog!="Luna22" & dog!="Luna25")%>%
+  rename("first_trial_fam"="first_trial_fam..1.yes..followed.communicator.")%>%
   droplevels()
 summary(fb_data)
 
@@ -57,6 +58,13 @@ summary(fb_data)
 #view(dfSummary(fb_data))
 
 ```
+
+### first trial of familiarisation correct
+```{r}
+binom.test(x=sum(fb_data$first_trial_fam), n=length(fb_data$first_trial_fam), p=0.5, alternative="two.sided")
+```
+
+
 
 #### Plotting the choices
 
