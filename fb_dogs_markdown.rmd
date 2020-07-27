@@ -10,7 +10,6 @@ output:
 
 #### test
 
-test
 
 
 
@@ -85,6 +84,32 @@ p.choice<-ggplot(
   
  
 ```
+
+
+Choice performance according to the FCI groups
+```{r}
+
+plot.data.fci <- fb_data %>%
+  mutate(condition=recode(condition, "FalseBelief"="False Belief", "TrueBelief"="True Belief"))%>% #renaming of factor levels
+  mutate(correct=as.numeric(ifelse(choice=="baited",1,ifelse(choice=="empty",0,""))))%>%
+  group_by(condition, fci_group)%>%
+  summarise(mean.correct=mean(correct), sd.correct=sd(correct), sum.correct=sum(correct), median.correct=median(correct), n.correct=length(correct), se.correct=sd(correct)/sqrt(length(correct)))
+
+
+p.choice.fci<-ggplot(
+  data=plot.data.fci, aes(x=condition, y=mean.correct)) +
+  geom_bar(stat="identity", alpha=0.5)+
+  geom_errorbar(aes(ymin=mean.correct-se.correct, ymax=mean.correct+se.correct), width=.2) +
+  ylim(0,1)+
+  theme_classic()+
+  labs(x="Condition",y="Proportion of baited bucket choices")+
+  facet_wrap(~fci_group)
+  
+p.choice.fci
+ 
+```
+
+
 
 
 ### Plotting latencies
