@@ -86,22 +86,22 @@ p.choice<-ggplot(
 
 #plotting the proportion of "EMPTY" choices
 
-p.data<- fb_data %>%
+p.data.empty<- fb_data %>%
   mutate(condition=recode(condition, "FalseBelief"="False Belief", "TrueBelief"="True Belief"))%>% #renaming of factor levels
   mutate(correct=as.numeric(ifelse(choice=="baited",0,ifelse(choice=="empty",1,""))))%>%
   group_by(condition)%>%
   summarise(mean.correct=mean(correct), sd.correct=sd(correct), sum.correct=sum(correct), median.correct=median(correct), n.correct=length(correct), se.correct=sd(correct)/sqrt(length(correct)))
 
-p.empty.choice<-ggplot(
-  data=plot.data, aes(x=condition, y=mean.correct)) +
+p.choice.empty<-ggplot(
+  data=p.data.empty, aes(x=condition, y=mean.correct)) +
   geom_bar(stat="identity", alpha=0.5)+
-  geom_errorbar(aes(ymin=mean.correct-se.correct, ymax=mean.correct+se.correct, width=.2) +
+  geom_errorbar(aes(ymin=mean.correct-se.correct, ymax=mean.correct+se.correct), width=.2) +
   ylim(0,1)+
   theme_classic()+
   labs(x="Condition",y="Proportion of empty bucket choices")+
-  ggtitle("Empty choices"))
-p.empty.choice
-  
+  ggtitle("Empty Choices")
+p.choice.empty
+
 
 
 
@@ -331,10 +331,17 @@ Drop1: P values for the individual effects were based on likelihood ratio tests 
 drop1.full=drop1(full.choice.breed, test="Chisq")
 round(drop1.full,3)
 ```
+```{r}
+summary(full.choice.breed)$varcor
+```
 
-
-
-
+``` {r mixed modeling, error=TRUE}
+#confidence intervals
+boot.res=boot.glmm.pred(model.res=full.choice.breed, excl.warnings=T,
+	nboots=1000, para=T)
+res<-round(boot.res$ci.estimates, 3) 
+res
+```
 
 
 
