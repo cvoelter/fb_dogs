@@ -1,0 +1,164 @@
+---
+title: "revised plots for paper FB1"
+author: "Lucrezia Lonardo"
+date: "25/10/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r pressure, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+rm(list=ls())
+
+library(lme4)
+library(ggthemes)
+library(psych)
+library(summarytools)
+library(cowplot)
+library(car)
+library(tidyverse)
+library(ggplot2)
+library(ggsignif)
+#library(sjPlot)
+source("functions/diagnostic_fcns.r")
+source("functions/glmm_stability.r")
+source("functions/boot_glmm.r")
+#install.packages("ggplot2")
+#install.packages("ggsignif")
+
+```
+
+```{r loading data, include = FALSE}
+fb_data <- read.csv(file="data/20200721_lucrezia_false_belief_task_data.csv")%>%
+  mutate(correct=as.numeric(ifelse(choice=="baited",0,ifelse(choice=="empty",1,""))))%>%
+  mutate(fci_group = as.factor(fci_group))%>%
+  mutate(id= 1:length(dog))%>%
+  filter(dog!="Luna22" & dog!="Luna25")%>%
+  filter(id<123)%>%
+  droplevels()
+summary(fb_data)
+
+
+#view(dfSummary(fb_data))
+```
+#### Plotting the choices
+```{r}
+
+plot.data <- fb_data %>%
+  mutate(condition=recode(condition, "FalseBelief"="False Belief", "TrueBelief"="True Belief"))%>% #renaming of factor levels
+  mutate(correct=as.numeric(ifelse(choice=="baited",0,ifelse(choice=="empty",1,""))))%>%
+  group_by(condition)%>%
+  summarise(mean.correct=mean(correct), sd.correct=sd(correct), sum.correct=sum(correct), median.correct=median(correct), n.correct=length(correct), se.correct=sd(correct)/sqrt(length(correct)))
+plot.data
+
+p.choice<-ggplot(
+  data=plot.data, aes(x=condition, y=mean.correct)) +
+  geom_bar(stat="identity", alpha=0.5)+
+  geom_errorbar(aes(ymin=mean.correct-se.correct, ymax=mean.correct+se.correct), width=.2) +
+  ylim(0,0.80)+
+  geom_signif(comparisons=list(c("False Belief", "True Belief")), annotations="*",
+              y_position = 0.70, tip_length = 0.10, vjust=0.4) +
+  theme_classic()+
+  labs(x="Group",y="Proportion of container A choices")+
+  ggtitle("Choice performance")
+ p.choice
+#save the plot using ggsave
+ggsave(
+  "ggsave_bucket_A_choices_first120dogs.png",
+  plot = last_plot(),
+  device = NULL,
+  path = "C:/Users/lonardol/Desktop/False Belief experiment/FB_1/Paper/graphs",
+  scale = 1,
+  width = NA,
+  height = NA,
+  units = c("in", "cm", "mm"),
+  dpi = 320,
+  limitsize = TRUE
+)
+ 
+```
+### Plotting latencies
+```{r}
+
+plot.data.latency <- fb_data %>%
+  mutate(condition=recode(condition, "FalseBelief"="False Belief", "TrueBelief"="True Belief"))#renaming of factor levels
+
+p.latency<-ggplot(
+  data=plot.data.latency, aes(x=condition, y=log(latency))) +
+  geom_boxplot(alpha=0.5)+
+  theme_classic()+
+  labs(x="Group",y="Latency (log transformed)")
+  
+p.latency
+#save the plot using ggsave
+ggsave(
+  "ggsave_latency_first120dogs.png",
+  plot = last_plot(),
+  device = NULL,
+  path = "C:/Users/lonardol/Desktop/False Belief experiment/FB_1/Paper/graphs",
+  scale = 1,
+  width = NA,
+  height = NA,
+  units = c("in", "cm", "mm"),
+  dpi = 320,
+  limitsize = TRUE
+)
+ 
+```
+###plotting choices of FCI groups using facets for ggplot 
+```{r}
+plot.data.fci <- fb_data %>%
+  mutate(condition=recode(condition, "FalseBelief"="False Belief", "TrueBelief"="True Belief"))%>% #renaming of factor levels
+  mutate(correct=as.numeric(ifelse(choice=="baited",0,ifelse(choice=="empty",1,""))))%>%
+  group_by(condition, fci_group)%>%
+  summarise(mean.correct=mean(correct), sd.correct=sd(correct), sum.correct=sum(correct), median.correct=median(correct), n.correct=length(correct), se.correct=sd(correct)/sqrt(length(correct)))
+
+#this does not work
+p.choice.fci<-ggplot(
+  data=plot.data.fci, aes(x=condition, y=mean.correct))+
+  geom_bar(stat='identity', alpha=0.5)+
+  #geom_errorbar(aes(ymin=mean.correct-se.correct, ymax=mean.correct+se.correct), width=.2) +
+  #ylim(0,0.8)+
+  theme_classic()+
+ labs(x="Group",y="Proportion of container A choices")+
+facet_wrap(~fci_group)
+p.choice.fci
+
+#this does not work
+#ggplot(plot.data.fci, aes(x=condition, y=mean.correct))+
+ # geom_bar(stat='identity', fill="forest green")+
+  #ylab("Proportion of container A choices")+
+  #xlab("Group")+
+  #ylim(0,1)
+
+
+
+#ggplot2.barplot(data=plot.data.fci, 
+ #   faceting=TRUE, facetingVarNames=c( "group", "fci group"))
+
+ 
+```
