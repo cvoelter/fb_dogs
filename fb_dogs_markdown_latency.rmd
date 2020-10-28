@@ -148,6 +148,23 @@ round(drop1.full,3)
 ```
 
 
+## Plotting
+```{r}
+
+fci.labs <- c("FCI group 1","FCI group 2","FCI group 3","FCI group 5","FCI group 6","FCI group 7","FCI group 8","FCI group 10")
+names(fci.labs) <- c(levels(fb_data$fci_group))
+
+
+plot.latency<-ggplot(data= fb_data, aes(x=condition, y=log(latency)))+
+  geom_boxplot()+
+  facet_wrap(~fci_group, ncol = 2, labeller=labeller(fci_group=fci.labs))+
+  theme_few()+
+  ylab("Latency (log transformed)")+
+  xlab("Condition")
+  
+ggsave(plot.latency, filename = "graphs/plot_latency.png", height= 10, width=6, scale=0.65 )
+
+```
 
 
 
