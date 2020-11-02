@@ -1,0 +1,78 @@
+---
+title: "latency FCI plot"
+author: "Lucrezia Lonardo"
+date: "01/11/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(lme4)
+library(ggthemes)
+library(psych)
+library(summarytools)
+library(cowplot)
+library(car)
+library(tidyverse)
+library(ggplot2)
+library(ggsignif)
+library(dplyr)
+#library(sjPlot)
+source("functions/diagnostic_fcns.r")
+source("functions/glmm_stability.r")
+source("functions/boot_glmm.r")
+#install.packages("ggplot2")
+#install.packages("ggsignif")
+#install.packages("dplyr")
+
+```
+## reading the file with all dogs 
+
+
+```{r}
+fb_data <- read.csv(file="data/20200721_lucrezia_false_belief_task_data.csv")%>%
+  mutate(correct=as.numeric(ifelse(choice=="baited",0,ifelse(choice=="empty",1,""))))%>%
+  mutate(fci_group = as.factor(fci_group))%>%
+  filter(dog!="Luna22" & dog!="Luna25")%>%
+   droplevels()
+summary(fb_data)
+```
+
+## plot latencies FCI groups using ggplot
+
+
+```{r}
+
+fb_data %>%
+  mutate(condition=recode(condition, "FalseBelief"="False Belief", "TrueBelief"="True Belief"))
+  
+#changing facet labels
+fci.labs <- c("FCI group 1","FCI group 2","FCI group 3","FCI group 5","FCI group 6","FCI group 7","FCI group 8","FCI group 10")
+names(fci.labs) <- c(levels(fb_data$fci_group))
+
+
+p.latency.fci<-ggplot(
+   data=fb_data, aes(x=condition, y=log(latency)))+
+  geom_boxplot(alpha=0.5)+
+   #geom_hline(yintercept=0.5, lty=3, lwt=1)+
+   theme_few()+
+  labs(x="Group",y="Latency (log transformed)")+
+facet_wrap(~fci_group, ncol = 2, labeller=labeller(fci_group=fci.labs))
+p.latency.fci
+
+
+
+#save the plot using ggsave
+ggsave(
+  "latency_fci_groups_144dogs.png",
+  plot = last_plot(),
+  device = NULL,
+  path = "C:/Users/lonardol/Desktop/False Belief experiment/FB_1/Paper/graphs",
+  scale = 1,
+  width = 4,
+  height = 7,
+  units = c("in", "cm", "mm"),
+  dpi = 320,
+  limitsize = TRUE
+)
+```
+
