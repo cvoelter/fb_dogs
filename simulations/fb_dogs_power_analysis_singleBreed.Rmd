@@ -1,0 +1,159 @@
+---
+title: "FALSE Belief - Power analysis - binomial GLMM "
+author: "Christoph Völter"
+date: "10/09/2020"
+output: 
+  html_document:
+    theme: united
+    toc: yes
+    toc_depth: 4
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+rm(list=ls())
+library(tidyverse)
+library(cowplot)
+library("gghalves")
+library(ggthemes)
+
+
+```
+
+## Generate data
+
+```{r echo=FALSE, include=FALSE}
+
+set.seed(1)
+n.subject <- 40# number subjects
+n.per.subject <- 1 # observations per subject
+n.per.condition <- 1 # observations per subject and condition
+subj.id <- as.factor(paste("subj", 1:n.subject, sep = "."))
+age.range=c(1:13)
+
+fb.per <- 0.70 # performance in fb condition
+tb.per <- 0.30 # performance in tb condition
+
+start.data <- data.frame(subj.id)
+
+xdata=data.frame(expand.grid(belief=c("false", "true"), sex=c("F", "M"), baited.fst=c("blue", "grey")))
+m.mat=model.matrix(object=~belief+sex+baited.fst, data=xdata)
+
+start.data<-cbind(start.data, xdata)
+
+```
+
+
+## Simulation
+
+```{r eval=FALSE, include=FALSE}
+n.simus <- 1000 # small number for testing
+
+
+# create object to store the simulation parameters and results:
+all.res <- data.frame(expand.grid(
+  n.per.subject = n.per.subject, 
+  fb.per = fb.per,
+  tb.per = tb.per,
+  simu = 1:n.simus
+))
+all.res$icpt <- NA
+all.res$belieftrue <- NA
+all.res$z.age <- NA
+all.res$sexM <- NA
+all.res$baited.fstgrey <- NA
+all.res$warns.full <- NA
+all.res$warns.null <- NA
+all.res$lrt.p.con <- NA
+all.res$lrt.p.age <- NA
+all.res$full.null.p <- NA
+
+all.ests <- matrix(NA, nrow = n.simus, ncol = 1)
+colnames(all.ests) <- c("lrt.p.con")
+
+# create data frame with design:
+## done above
+
+# load packages needed:
+library(lme4)
+# Loading required package: Matrix
+library(kyotil) # we want to store info about convergence issues
+
+# define control structure to make convergence more likely:
+xdata <- start.data
+
+# run simulation
+for (i in 1:nrow(all.res)) {
+  set.seed(i) # allows to later replicate individual simulations
+
+  # add age  (if it should be generated in each loop)
+  age <- sample(x = age.range, size = length(unique(xdata$subj.id)), replace = T)
+  xdata$age <- as.numeric(age[as.numeric(xdata$subj.id)])
+  xdata$z.age <- as.vector(scale(xdata$age))
+
+  m.mat <- model.matrix(object = ~ belief+sex+baited.fst+z.age, data = xdata) # create model martix
+
+  coefs <- c(
+    "(Intercept)" = qlogis(fb.per),#performance in fb condition
+    "belieftrue" = qlogis(tb.per)-qlogis(fb.per),#performance in tb condition
+    "sexM" = 0,
+    "baited.fstgrey" = 0,
+    "z.age" = 0
+  )
+
+  LP <- m.mat[, names(coefs)] %*% coefs # LP wrt fixed effects
+
+  # generate response:
+xdata$choice <- rbinom(n = nrow(xdata), size = 1, prob = exp(LP) / (1 + exp(LP)))
+
+  # fit full model:
+  full <- keepWarnings(glm(choice~belief+sex+baited.fst+z.age,
+			 family=binomial, data=xdata
+    ))
+  # fit null model:
+  null <- keepWarnings(glm(choice ~ sex+baited.fst+z.age,
+			 family=binomial, data=xdata
+  ))
+  # store results:
+  all.res[i, c("icpt", "belieftrue", "z.age", "sexM", "baited.fstgrey")] <- coef(full$value)
+  all.res[i, "warns.full"] <- nchar(paste(full$warnings, collapse = ""))
+  all.res[i, "warns.null"] <- nchar(paste(null$warnings, collapse = ""))
+  all.res[i, "lrt.p.con"] <- as.data.frame(drop1(full$value, test = "Chisq"))["belief", "Pr(>Chi)"]
+  all.res[i, "lrt.age.p"] <- as.data.frame(drop1(full$value, test = "Chisq"))["z.age", "Pr(>Chi)"]
+    all.res[i, "full.null.p"] <- as.data.frame(anova(null$value, full$value, test = "Chisq"))[2, "Pr(>Chi)"]
+}
+
+save.image("fb_simulation_single_breed_based_on_exp1.RData")
+```
+
+## Evaluation of results 
+
+
+
+
+## Only models that converged are evaluated from here on:  
+
+```{r include=FALSE}
+all.res2=subset(all.res, warns.full==0)
+```
+
+
+### How many models converged, have a significant full-null model comparison, and a significant LRT of condition?  
+```{r echo=FALSE}
+n.converged<- all.res2%>%
+      summarise(n.converged=length(lrt.p.con))
+
+
+lrt.data2 <- all.res2 %>%
+  filter(full.null.p<0.05)%>%
+  summarise(lrt.p.con.median = median(lrt.p.con), 
+            lrt.p.age.median = median(lrt.age.p),
+            n.sign.lrt.con = length(lrt.p.con[lrt.p.con < 0.05]),
+            n.sign.lrt.age = length(lrt.age.p[lrt.age.p < 0.05]),
+            n.lrt = n.simus,
+            proportion.sign.lrt.con = length(lrt.p.con[lrt.p.con < 0.05]) / n.simus,
+            proportion.sign.lrt.age = length(lrt.age.p[lrt.age.p < 0.05]) / n.simus)
+
+lrt.data2
+```

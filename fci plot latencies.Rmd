@@ -42,7 +42,7 @@ summary(fb_data)
 
 ```{r}
 
-fb_data %>%
+fb_data <- fb_data %>%
   mutate(condition=recode(condition, "FalseBelief"="False Belief", "TrueBelief"="True Belief"))
   
 #changing facet labels
