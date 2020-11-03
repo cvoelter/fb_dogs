@@ -32,8 +32,8 @@ n.per.condition <- 1 # observations per subject and condition
 subj.id <- as.factor(paste("subj", 1:n.subject, sep = "."))
 age.range=c(1:13)
 
-fb.per <- 0.70 # performance in fb condition
-tb.per <- 0.30 # performance in tb condition
+fb.per <- c(0.3, 0.5) # performance in fb condition
+tb.per <- c(0.3, 0.7) # performance in tb condition
 
 start.data <- data.frame(subj.id)
 
@@ -48,7 +48,7 @@ start.data<-cbind(start.data, xdata)
 ## Simulation
 
 ```{r eval=FALSE, include=FALSE}
-n.simus <- 1000 # small number for testing
+n.simus <- 10000 # small number for testing
 
 
 # create object to store the simulation parameters and results:
@@ -95,8 +95,8 @@ for (i in 1:nrow(all.res)) {
   m.mat <- model.matrix(object = ~ belief+sex+baited.fst+z.age, data = xdata) # create model martix
 
   coefs <- c(
-    "(Intercept)" = qlogis(fb.per),#performance in fb condition
-    "belieftrue" = qlogis(tb.per)-qlogis(fb.per),#performance in tb condition
+    "(Intercept)" = qlogis(all.res[i, "fb.per"]),#performance in fb condition
+    "belieftrue" = qlogis(all.res[i, "tb.per"])-qlogis(all.res[i, "fb.per"]),#performance in tb condition
     "sexM" = 0,
     "baited.fstgrey" = 0,
     "z.age" = 0
@@ -147,6 +147,7 @@ n.converged<- all.res2%>%
 
 lrt.data2 <- all.res2 %>%
   filter(full.null.p<0.05)%>%
+  group_by(fb.per,tb.per) %>%
   summarise(lrt.p.con.median = median(lrt.p.con), 
             lrt.p.age.median = median(lrt.age.p),
             n.sign.lrt.con = length(lrt.p.con[lrt.p.con < 0.05]),
@@ -156,4 +157,20 @@ lrt.data2 <- all.res2 %>%
             proportion.sign.lrt.age = length(lrt.age.p[lrt.age.p < 0.05]) / n.simus)
 
 lrt.data2
+```
+#### Plotting the proportion of significant LRTs for the predictor variable condition ONLY based on models that converged and with a significant full-null model comparison
+
+```{r echo=FALSE}
+p.con.power <- ggplot(data = lrt.data2, aes(x= as.factor(fb.per),y = proportion.sign.lrt.con, fill=as.factor(tb.per))) +
+  geom_bar(stat="identity", color="black", position=position_dodge())+
+  scale_y_continuous(breaks=seq(0,1,0.2), limits=c(0, 1))+
+  geom_hline(yintercept = 0.8, colour = "black", lwd = 1.1, lty = 2) +
+    geom_hline(yintercept = 0.05, colour = "darkgrey", lwd = 1.1, lty = 4) +
+  scale_fill_manual(values=c("dodgerblue", "darkorange"))+
+  labs(fill = "TB condition", y="Power", x= "FB condition") +
+  theme_few()#+
+  #theme(legend.position="none")
+p.con.power
+
+ggsave(p.con.power, filename = "../graphs/single_breed_simulation.png", scale = 0.8, height = 5, width = 7)
 ```
