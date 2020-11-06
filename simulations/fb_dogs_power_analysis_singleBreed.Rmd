@@ -18,6 +18,7 @@ library(cowplot)
 library("gghalves")
 library(ggthemes)
 
+#load("fb_simulation_single_breed_based_on_exp1_n60.RData")
 
 ```
 
@@ -26,7 +27,7 @@ library(ggthemes)
 ```{r echo=FALSE, include=FALSE}
 
 set.seed(1)
-n.subject <- 40# number subjects
+n.subject <- 64# number subjects
 n.per.subject <- 1 # observations per subject
 n.per.condition <- 1 # observations per subject and condition
 subj.id <- as.factor(paste("subj", 1:n.subject, sep = "."))
@@ -124,7 +125,7 @@ xdata$choice <- rbinom(n = nrow(xdata), size = 1, prob = exp(LP) / (1 + exp(LP))
     all.res[i, "full.null.p"] <- as.data.frame(anova(null$value, full$value, test = "Chisq"))[2, "Pr(>Chi)"]
 }
 
-save.image("fb_simulation_single_breed_based_on_exp1.RData")
+save.image("fb_simulation_single_breed_based_on_exp1_N64.RData")
 ```
 
 ## Evaluation of results 
@@ -172,5 +173,5 @@ p.con.power <- ggplot(data = lrt.data2, aes(x= as.factor(fb.per),y = proportion.
   #theme(legend.position="none")
 p.con.power
 
-ggsave(p.con.power, filename = "../graphs/single_breed_simulation.png", scale = 0.8, height = 5, width = 7)
+ggsave(p.con.power, filename = "../graphs/single_breed_simulation_N64.png", scale = 0.8, height = 5, width = 7)
 ```
