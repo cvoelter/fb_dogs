@@ -27,7 +27,7 @@ source("functions/boot_glmm.r")
 
 ```{r}
 
-border_data <-read_csv("~/R/fb_dogs/data/fb2_bc.csv")%>%
+border_data <-read_csv("./data/fb2_bc.csv")%>%
   mutate(correct=as.numeric(ifelse(choice=="baited",0,ifelse(choice=="empty",1,""))))%>%
   mutate(fci_group = as.factor(fci_group))%>%
   mutate(condition=recode(condition, "FalseBelief"="False Belief", "TrueBelief"="True Belief"))
@@ -38,7 +38,7 @@ str(border_data)
 
 ```
 
-```
+
 ## Plotting choice
 
 ```{r}
@@ -61,14 +61,14 @@ p.choice<-ggplot(
  
 #saving the plot with ggsave
 ggsave(
-  "bucket_A_choices_BC.png",
+  "./graphs/bucket_A_choices_BC.png",
   plot = last_plot(),
   device = NULL,
-  path = "C:/Users/lonardol/Desktop/False Belief experiment/FB_2_follow_up/Graphs/Border Collies",
+ # path = "C:/Users/lonardol/Desktop/False Belief experiment/FB_2_follow_up/Graphs/Border Collies",
   scale = 0.8,
   width = 5,
   height = 6,
-  units = c("in", "cm", "mm"),
+  #units = c("in", "cm", "mm"),
   dpi = 320,
   limitsize = TRUE
 )
@@ -93,6 +93,8 @@ xx.fe.re$summary
 full.choice.breed <- glm(correct ~ condition + z.age + sex + first_baited_box, 
              data = model.data, family = binomial, 
 )
+
+
 ```
 #coefficients (estimate and std. error )
 ```{r}
@@ -103,17 +105,3 @@ round(summary(full.choice.breed)$coefficients, 3)
 drop1.full=drop1(full.choice.breed, test="Chisq")
 round(drop1.full,3)
 ```
-
-```{r}
-summary(full.choice.breed)$varcor
-```
-
-```
-
-
-```
-
-```
-
-
-

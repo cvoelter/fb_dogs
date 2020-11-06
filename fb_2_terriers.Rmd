@@ -27,16 +27,17 @@ source("functions/boot_glmm.r")
 
 ```{r}
 
-terrier_data <-read_csv("~/R/fb_dogs/data/fb2_terrier.csv")%>%
+terrier_data <-read_csv("./data/fb2_terrier.csv")%>%
   mutate(correct=as.numeric(ifelse(choice=="baited",0,ifelse(choice=="empty",1,""))))%>%
   mutate(fci_group = as.factor(fci_group))%>%
+  mutate(breed= as.factor(breed))%>%
   mutate(condition=recode(condition, "FalseBelief"="False Belief", "TrueBelief"="True Belief"))
 summary(terrier_data)
 str(terrier_data)
 
-#view(dfSummary(fb_data))
 
-```
+table(terrier_data$sex, terrier_data$breed)
+#view(dfSummary(fb_data))
 
 ```
 
@@ -62,19 +63,19 @@ p.choice<-ggplot(
  
 #saving the plot with ggsave
 ggsave(
-  "bucket_A_choices_terriers.png",
+  "./graphs/bucket_A_choices_terriers.png",
   plot = last_plot(),
   device = NULL,
-  path = "C:/Users/lonardol/Desktop/False Belief experiment/FB_2_follow_up/Graphs/Terriers",
+  #path = "C:/Users/lonardol/Desktop/False Belief experiment/FB_2_follow_up/Graphs/Terriers",
   scale = 0.8,
   width = 5,
   height = 6,
-  units = c("in", "cm", "mm"),
+  #units = c("in", "cm", "mm"),
   dpi = 320,
   limitsize = TRUE
 )
 ```
-```
+
 analysing the effect of group on condition: generalised linear mixed model
 
 ```{r}
@@ -82,21 +83,29 @@ model.data <- terrier_data %>%
   mutate(z.age = as.numeric(scale(age, scale = T, center = T)),
          sex.c = as.numeric(scale(as.numeric(sex), scale=F, center=T)),
          condition.c = as.numeric(scale(as.numeric(condition), scale=F, center=T)),
-         first_baited_box.c = as.numeric(scale(as.numeric(first_baited_box), scale=F, center=T)))
+         first_baited_box.c = as.numeric(scale(as.numeric(first_baited_box), scale=F, center=T)),
+         breed2=as.factor(as.numeric(breed)))
 
-as.data.frame(model.data)
+model.data<-as.data.frame(model.data)
 
 
 xx.fe.re=fe.re.tab(fe.model="correct ~ condition + age + sex + first_baited_box",
-                   re="(1|breed)", data=terrier_data)
+                   re="(1|breed)", data=model.data)
 xx.fe.re$summary
+
 
 ## code to run the model
 full.choice.breed <- glmer(correct ~ condition + z.age + sex + first_baited_box+
-             (1+ sex.c + condition.c + first_baited_box.c || breed), 
+             (1+ sex.c + condition.c + first_baited_box.c || breed2), 
              data = model.data, family = binomial, 
-             control=glmerControl(optimizer="bobyqa",optCtrl=list(maxfun=2e5))
-)
+             control=glmerControl(optimizer="bobyqa",optCtrl=list(maxfun=2e5)))
+summary(full.choice.breed)
 
+full.glm <- glm(correct ~ condition + z.age + sex+first_baited_box , 
+             data = model.data, family = binomial, 
+             )
+summary(full.glm)
+
+drop1(full.glm, test="Chisq")
 
 ```
