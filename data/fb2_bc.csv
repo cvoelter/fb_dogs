@@ -1,0 +1,41 @@
+dog,condition,choice,test_trial_number,"first_trial_fam (1=yes, followed communicator)",first_trial_fam_type,first_baited_box,age,sex,breed,fci_group,parker_group,communicator,hider,first_ant_look_pause,notes
+Shadow3,FalseBelief,empty,9,1,no_displacement,blue,5,m,border_collie,1,uk_rural,LL,VS,NA,
+Junie,TrueBelief,baited,7,1,displacement,brown,4,f,border_collie,1,uk_rural,LL,VS,empty,
+DeLucy,TrueBelief,empty,7,1,displacement,blue,1,f,border_collie,1,uk_rural,LL,AE,baited,
+Cappuccina,FalseBelief,empty,7,1,no_displacement,brown,5,f,border_collie,1,uk_rural,LL,AE,,
+Frosty2,TrueBelief,empty,7,1,displacement,brown,2,m,border_collie,1,uk_rural,LL,VS,,
+Emma13,TrueBelief,baited,7,1,no_displacement,blue,3,f,border_collie,1,uk_rural,LL,VS,,
+Zoe6,FalseBelief,baited,7,1,displacement,brown,9,f,border_collie,1,uk_rural,LL,VS,,
+Tris,FalseBelief,empty,9,1,no_displacement,brown,2,f,border_collie,1,uk_rural,LL,VS,,own food
+Maya,FalseBelief,baited,9,1,displacement,blue,3,f,border_collie,1,uk_rural,LL,VS,,own food
+Cameron,TrueBelief,baited,7,1,no_displacement,brown,7,m,border_collie,1,uk_rural,VS,AE,,
+Caspar,FalseBelief,baited,7,1,displacement,blue,6,m,border_collie,1,uk_rural,LL,VS,,
+Chiara4,FalseBelief,empty,7,1,displacement,brown,0.5,f,border_collie,1,uk_rural,LL,VS,,
+Candy8,FalseBelief,baited,7,1,no_displacement,blue,5,f,border_collie,1,uk_rural,LL,VS,,
+Paulinchen,TrueBelief,baited,9,1,displacement,blue,0.42,f,border_collie,1,uk_rural,LL,VS,,
+Sammy9,TrueBelief,baited,7,1,no_displacement,brown,0.5,m,border_collie,1,uk_rural,LL,VS,,
+Amy11,TrueBelief,empty,7,1,no_displacement,brown,11,f,border_collie,1,uk_rural,VS,AE,,
+Ella,TrueBelief,baited,7,1,no_displacement,blue,8,f,border_collie,1,uk_rural,LL,VS,,
+Fox,FalseBelief,empty,7,1,displacement,blue,1,m,border_collie,1,uk_rural,LL,VS,,
+Amber2,TrueBelief,baited,7,1,no_displacement,blue,4,f,border_collie,1,uk_rural,LL,VS,,
+Caruso,FalseBelief,baited,7,1,no_displacement,blue,5,m,border_collie,1,uk_rural,LL,VS,,sausages
+Dali,TrueBelief,baited,9,0,displacement,brown,0.83,m,border_collie,1,uk_rural,LL,VS,,
+Miley3,TrueBelief,baited,7,1,displacement,blue,1,f,border_collie,1,uk_rural,LL,VS,,
+Malou,FalseBelief,baited,7,1,displacement,brown,5,f,border_collie,1,uk_rural,LL,VS,,
+Anny2,FalseBelief,empty,7,1,no_displacement,blue,7,f,border_collie,1,uk_rural,LL,AE,,sausages
+Pipp,TrueBelief,baited,9,1,displacement,brown,4,f,border_collie,1,uk_rural,LL,AE,,
+Dawn,TrueBelief,empty,9,1,displacement,blue,8,f,border_collie,1,uk_rural,LL,AE,,
+Aquila,FalseBelief,empty,7,1,displacement,brown,7,f,border_collie,1,uk_rural,LL,AE,,
+Cb,TrueBelief,baited,9,1,no_displacement,brown,3,f,border_collie,1,uk_rural,LL,AE,,
+Louis2,FalseBelief,empty,9,1,no_displacement,brown,0.58,m,border_collie,1,uk_rural,LL,AE,,
+Flash3,TrueBelief,baited,7,1,displacement,blue,1,m,border_collie,1,uk_rural,LL,VS,,first choice not clear: just sniffed?
+Lily2,FalseBelief,baited,7,1,no_displacement,blue,7,f,border_collie,1,uk_rural,LL,VS,,
+Columbo,FalseBelief,empty,7,1,no_displacement,brown,2,m,border_collie,1,uk_rural,LL,VS,,sausages
+Camilla,FalseBelief,baited,7,1,displacement,brown,3,f,border_collie,1,uk_rural,LL,VS,,
+Lucky7,TrueBelief,empty,9,1,no_displacement,blue,3,m,border_collie,1,uk_rural,LL,VS,,
+Anuk,FalseBelief,empty,9,1,displacement,blue,6,m,border_collie,1,uk_rural,LL,VS,,
+Siggi,TrueBelief,baited,9,1,no_displacement,brown,7,m,border_collie,1,uk_rural,LL,AE,,
+Clou,TrueBelief,empty,7,1,no_displacement,blue,12,f,border_collie,1,uk_rural,LL,VS,,
+Charon,FalseBelief,baited,7,1,displacement,brown,9,m,border_collie,1,uk_rural,LL,VS,,
+Cela,FalseBelief,empty,9,1,no_displacement,blue,1,f,border_collie,1,uk_rural,LL,VS,,
+Isis,TrueBelief,baited,9,1,no_displacement,brown,9,f,border_collie,1,uk_rural,LL,VS,,

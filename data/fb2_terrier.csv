@@ -1,0 +1,40 @@
+dog,condition,choice,test_trial_number,"first_trial_fam (1=yes, followed communicator)",first_trial_fam_type,first_baited_box,age,sex,breed,fci_group,parker_group,communicator,hider,first_ant_look_pause,notes
+Lani,TrueBelief,baited,7,1,no_displacement,black,6,f,jack_russel_terrier,3,terrier,LL,VS,,Hider left food inside bucket B
+Mado,TrueBelief,empty,7,1,displacement,white,1,f,west_highland_white_terrier,3,terrier,LL,AE,,own food
+Emma14,FalseBelief,empty,7,1,no_displacement,black,10,f,parson_russell_terrier,3,terrier,LL,AE,,
+Satchmo,TrueBelief,empty,9,0,displacement,black,0.58,m,parson_russell_terrier,3,terrier,LL,AE,,first trial fam dog was distracted by owner
+Lilo,FalseBelief,baited,7,1,no_displacement,brown,1,f,brazilian_terrier,3,terrier,LL,VS,,Hider left food inside bucket B
+DanteMacchiato,FalseBelief,baited,7,1,displacement,white,2,m,jack_russel_terrier,3,terrier,LL,AE,,
+FoxVulptex,TrueBelief,empty,7,1,no_displacement,blue,2,m,brazilian_terrier,3,terrier,LL,AE,,
+Maggie4,TrueBelief,baited,7,1,displacement,brown,8,f,parson_russell_terrier,3,terrier,LL,VS,,
+Pepper3,FalseBelief,baited,8,0,no_displacement,brown,2,f,parson_russell_terrier,3,terrier,LL,AE,,2 no choices in phase 2; switched to sausages
+Lottie2,TrueBelief,empty,9,1,no_displacement,brown,2,f,parson_russell_terrier,3,terrier,LL,VS,,
+Joy10,FalseBelief,baited,7,1,displacement,blue,5,f,parson_russell_terrier,3,terrier,LL,VS,,
+Sam5,TrueBelief,empty,9,1,displacement,white,6,m,yorkshire_terrier,3,terrier,LL,VS,,own food
+Jamie6,TrueBelief,baited,7,1,no_displacement,white,2,m,yorkshire_terrier,3,terrier,LL,VS,,
+Samira,FalseBelief,baited,7,1,displacement,black,6,f,yorkshire_terrier,3,terrier,VS,AE,,
+Fanny6,TrueBelief,empty,7,1,displacement,black,6,f,parson_russell_terrier,3,terrier,LL,AE,,sausages
+Bacardi2,FalseBelief,baited,7,1,no_displacement,white,0.58,m,jack_russel_terrier,3,terrier,LL,AE,,sausages; dog neede help to retrieve food; hider helped it after dog´s choices
+Bärli,FalseBelief,baited,7,1,no_displacement,blue,5,m,irish_glen_of_imaal_terrier,3,terrier,LL,VS,,sausages
+Emma15,FalseBelief,baited,7,1,displacement,brown,3,f,irish_glen_of_imaal_terrier,3,terrier,LL,VS,,
+Zizi,FalseBelief,baited,7,1,displacement,blue,11,f,fox_terrier,3,terrier,LL,AE,,own hypoallergenic food 
+Haku2,TrueBelief,empty,7,1,no_displacement,blue,6,m,irish_soft_coated_weathen_terrier,3,terrier,LL,AE,,
+Felix5,FalseBelief,baited,7,1,displacement,blue,3,m,parson_russell_terrier,3,terrier,LL,VS,,
+Duana,FalseBelief,baited,7,1,displacement,brown,3,f,irish_glen_of_imaal_terrier,3,terrier,LL,VS,,
+Aoife,TrueBelief,baited,7,1,no_displacement,brown,7,f,irish_glen_of_imaal_terrier,3,terrier,LL,VS,,
+Ciara2,TrueBelief,empty,7,1,no_displacement,blue,10,f,irish_glen_of_imaal_terrier,3,terrier,LL,VS,,
+Paul2,TrueBelief,baited,9,1,displacement,black,3,m,jack_russel_terrier,3,terrier,LL,VS,,
+Ragnar,FalseBelief,baited,9,1,no_displacement,brown,2,m,bedlington_terrier,3,terrier,LL,VS,,
+FinneFailbhe,TrueBelief,baited,7,1,displacement,blue,0.83,f,irish_glen_of_imaal_terrier,3,terrier,LL,VS,,
+Kottan,TrueBelief,baited,9,0,displacement,brown,1,m,parson_russell_terrier,3,terrier,LL,AE,,
+Joe,FalseBelief,empty,7,1,no_displacement,blue,1,m,irish_terrier,3,terrier,LL,AE,,"sausages; dog wasn´t really food motivated, owner (who had 8 terriers before this one) described him as ""atypical"" terrier"
+Anika,FalseBelief,baited,7,1,displacement,brown,5,f,welsh_terrier,3,terrier,LL,AE,,
+Maja5,FalseBelief,empty,7,1,no_displacement,blue,4,f,parson_russell_terrier,3,terrier,LL,AE,,
+Lalobe,TrueBelief,baited,7,1,no_displacement,white,2,f,jack_russel_terrier,3,terrier,LL,AE,,own food
+Eyla,TrueBelief,baited,7,1,displacement,brown,4,f,irish_terrier,3,terrier,LL,VS,,
+Monty7,TrueBelief,baited,7,1,no_displacement,blue,6,f,border_terrier,3,terrier,LL,AE,,
+Jogi2,FalseBelief,empty,7,1,displacement,brown,9,m,border_terrier,3,terrier,LL,AE,,
+Benjiro,FalseBelief,baited,9,1,no_displacement,black,0.5,m,japanese_terrier,3,terrier,LL,AE,,
+Hago,TrueBelief,empty,9,1,no_displacement,black,6,m,border_terrier,3,terrier,LL,AE,,
+Frankie2,TrueBelief,empty,7,1,no_displacement,brown,3,m,parson_russell_terrier,3,terrier,LL,VS,,
+Amy19,FalseBelief,baited,7,1,displacement,white,12,f,jack_russel_terrier,3,terrier,LL,VS,,own food
